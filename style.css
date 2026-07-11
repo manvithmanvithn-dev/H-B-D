@@ -1,0 +1,134 @@
+/* Premium Interface System Stylesheet */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+    background: radial-gradient(circle at center, #1e1b4b 0%, #09090b 100%);
+    color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card-wrapper {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 45px 35px;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.dynamic-hide {
+    display: none;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.badge-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+}
+
+h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #a855f7, #ec4899, #ff7b00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description {
+    color: #94a3b8;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+.form-container {
+    margin-bottom: 20px;
+}
+
+.code-field {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 14px;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 0.3em;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.code-field:focus {
+    border-color: #a855f7;
+}
+
+.error-alert {
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    display: none;
+}
+
+.primary-btn {
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 14px 28px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 100%;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+.pulse-effect {
+    width: auto;
+    background: linear-gradient(135deg, #ffffff, #f1f5f9);
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+.shake-element {
+    animation: shake 0.3s ease;
+}
