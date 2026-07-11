@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, My Friend!</title>
+    <title>Happy Birthday</title>
     <style>
+        :root {
+            --bg-primary: #0a0a0c;
+            --card-bg: rgba(18, 18, 24, 0.65);
+            --accent-glow: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -12,8 +20,9 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e1b4b, #311042);
+            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,201 +31,208 @@
             position: relative;
         }
 
-        /* Ambient Floating Particles */
-        .particle {
+        /* Canvas background for performance-optimized particle network */
+        canvas {
             position: absolute;
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
-            animation: floatUp 6s linear infinite;
-            opacity: 0.6;
+            z-index: 1;
         }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% {
-                transform: translateY(-10vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Glassmorphism Birthday Card */
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 40px 30px;
+        /* Premium Glassmorphism Container */
+        .showcase-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            padding: 50px 40px;
             width: 90%;
-            max-width: 440px;
+            max-width: 480px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
-                        inset 0 0 20px rgba(255, 255, 255, 0.05);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
             z-index: 10;
-            transform: translateY(20px);
             opacity: 0;
-            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            transform: translateY(30px);
+            animation: prepareLayout 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        @keyframes fadeInUp {
+        @keyframes prepareLayout {
             to {
                 transform: translateY(0);
                 opacity: 1;
             }
         }
 
-        .icon-wrapper {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: bounce 2s ease infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .visual-anchor {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 28px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         h1 {
-            color: #ffffff;
-            font-size: 2.2rem;
+            font-size: 2.6rem;
             font-weight: 800;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
-            background: linear-gradient(45deg, #ff7b00, #ff007b, #9d00ff);
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            background: var(--accent-glow);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        p {
-            color: #cbd5e1;
+        .message-body {
+            color: var(--text-muted);
             font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            line-height: 1.7;
+            font-weight: 400;
+            margin-bottom: 36px;
         }
 
-        /* Interactive Action Button */
-        .celebrate-btn {
-            background: linear-gradient(45deg, #ec4899, #8b5cf6);
-            color: white;
+        /* Interactive Premium Button Architecture */
+        .cta-trigger {
+            position: relative;
+            background: #ffffff;
+            color: #000000;
             border: none;
-            padding: 14px 28px;
-            font-size: 1rem;
+            padding: 16px 36px;
+            font-size: 0.95rem;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-            transition: all 0.3s ease;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
             outline: none;
         }
 
-        .celebrate-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+        .cta-trigger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
         }
 
-        .celebrate-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Dynamic Celebration Pop Particles */
-        .burst-particle {
-            position: absolute;
-            pointer-events: none;
-            border-radius: 50%;
-            z-index: 5;
-            animation: burst Out 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-        }
-
-        @keyframes burstOut {
-            0% {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--mx), var(--my)) scale(1);
-                opacity: 0;
-            }
+        .cta-trigger:active {
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <!-- Background Decoration -->
-    <div id="particle-container"></div>
+    <canvas id="ambient-network"></canvas>
 
-    <!-- Main Message Card -->
-    <div class="card">
-        <div class="icon-wrapper">🎉</div>
-        <h1>Happy Birthday, Friend!</h1>
-        <p>
-            To an incredible friend who brings so much joy, laughter, and light into my life—may your special day be filled with endless happiness, great memories, and everything you've been wishing for! Cheers to another wonderful year ahead!
+    <div class="showcase-container">
+        <div class="visual-anchor">✨</div>
+        <h1>Happy Birthday</h1>
+        <p class="message-body">
+            Wishing you a remarkable day defined by excellence, happiness, and continued accomplishment. May the upcoming year bring new avenues of growth, fulfillment, and outstanding milestones.
         </p>
-        <button class="celebrate-btn" onclick="triggerCelebration(event)">Press to Celebrate ✨</button>
+        <button class="cta-trigger" onclick="initializeCelebration()">Initialize Celebration</button>
     </div>
 
     <script>
-        // Create random background ambient particles
-        const container = document.getElementById('particle-container');
-        const colors = ['#ff7b00', '#ff007b', '#9d00ff', '#00f5ff', '#ffeb3b'];
+        // High-performance Canvas Particle Subsystem
+        const canvas = document.getElementById('ambient-network');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
 
-        function createAmbientParticles() {
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                const size = Math.random() * 8 + 4;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.animationDelay = `${Math.random() * 6}s`;
-                particle.style.animationDuration = `${Math.random() * 4 + 4}s`;
-                
-                container.appendChild(particle);
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+                this.y = Math.random() * canvas.height;
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 20;
+                this.radius = Math.random() * 1.5 + 0.5;
+                this.speedV = Math.random() * 0.5 + 0.2;
+                this.alpha = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.y -= this.speedV;
+                if (this.y < -10) this.reset();
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(168, 85, 247, ${this.alpha})`;
+                ctx.fill();
             }
         }
-        createAmbientParticles();
 
-        // Click interaction explosion effect
-        function triggerCelebration(event) {
-            const btn = event.target;
-            const rect = btn.getBoundingClientRect();
-            const startX = rect.left + rect.width / 2;
-            const startY = rect.top + rect.height / 2;
+        function setupParticles() {
+            for (let i = 0; i < 60; i++) {
+                particles.push(new Particle());
+            }
+        }
 
-            for (let i = 0; i < 40; i++) {
-                const p = document.createElement('div');
-                p.classList.add('burst-particle');
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        setupParticles();
+        animate();
+
+        // Refined Celebration Interactive Micro-Burst
+        function initializeCelebration() {
+            const container = document.querySelector('.showcase-container');
+            const rect = container.getBoundingClientRect();
+            
+            for (let i = 0; i < 50; i++) {
+                const element = document.createElement('div');
+                element.style.position = 'absolute';
+                element.style.width = `${Math.random() * 8 + 4}px`;
+                element.style.height = element.style.width;
                 
-                const size = Math.random() * 10 + 6;
-                p.style.width = `${size}px`;
-                p.style.height = `${size}px`;
-                p.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                // Absolute positioning based on coordinates
-                p.style.left = `${startX}px`;
-                p.style.top = `${startY}px`;
-                
-                // Random vector trajectories for dynamic spray
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 150 + 50;
-                const moveX = Math.cos(angle) * distance;
-                const moveY = Math.sin(angle) * distance;
-                
-                p.style.setProperty('--mx', `${moveX}px`);
-                p.style.setProperty('--my', `${moveY}px`);
-                
-                document.body.appendChild(p);
-                
-                // Cleanup node elements after animation finishes
-                setTimeout(() => p.remove(), 800);
+                const palette = ['#6366f1', '#a855f7', '#ec4899', '#ffffff'];
+                element.style.backgroundColor = palette[Math.floor(Math.random() * palette.length)];
+                element.style.borderRadius = '50%';
+                element.style.pointerEvents = 'none';
+                element.style.zIndex = '100';
+
+                const sourceX = window.innerWidth / 2;
+                const sourceY = rect.bottom - 40;
+                element.style.left = `${sourceX}px`;
+                element.style.top = `${sourceY}px`;
+
+                document.body.appendChild(element);
+
+                const vectorAngle = Math.random() * Math.PI * 2;
+                const magnitude = Math.random() * 180 + 60;
+                const destinationX = Math.cos(vectorAngle) * magnitude;
+                const destinationY = Math.sin(vectorAngle) * magnitude;
+
+                const animation = element.animate([
+                    { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                    { transform: `translate(calc(-50% + ${destinationX}px), calc(-50% + ${destinationY}px)) scale(0)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 600 + 600,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+
+                animation.onfinish = () => element.remove();
             }
         }
     </script>
